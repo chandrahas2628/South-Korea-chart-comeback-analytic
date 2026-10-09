@@ -1,0 +1,1502 @@
+{
+  "dataset_statistics": {
+    "Total raw records": 27800,
+    "Valid records (after cleaning)": 27750,
+    "Rejected records (failed validation)": 0,
+    "Exact duplicate rows (raw)": 16,
+    "Duplicate song/date records (raw)": 48,
+    "Alternate-snapshot rows discarded": 50,
+    "Duplicate song/date rows removed (post-resolution)": 0,
+    "Date format detected": "%d-%m-%Y",
+    "Observed playlist dates": 555,
+    "Valid playlist days (complete 50-entry snapshots)": 555,
+    "Incomplete playlist days (<50 entries)": 0,
+    "Over-full playlist days after cleaning (>50)": 0,
+    "Raw dates with >50 rows (stacked snapshots)": 1,
+    "Raw dates with <50 rows": 0,
+    "Snapshot dates resolved": 1,
+    "First date": "2024-05-18",
+    "Last date": "2025-11-27",
+    "Calendar days in range": 559,
+    "Calendar gaps (missing dates)": 4,
+    "Calendar gap runs": 4,
+    "Unique songs (song+artist)": 537,
+    "Unique song titles": 524,
+    "Titles shared by >1 artist": 12,
+    "Unique artists": 193,
+    "Rows with missing artist (filled)": 0,
+    "Album types present": "single: 17918, album: 9831, compilation: 1"
+  },
+  "removal_ledger": [
+    {
+      "Step": "Raw records",
+      "Rows": 27800,
+      "Why": "Rows in the untouched raw CSV.",
+      "Reconciles": ""
+    },
+    {
+      "Step": "- Rejected by validation",
+      "Rows": 0,
+      "Why": "Invalid date, rank, popularity, duration, total_tracks, explicit flag or empty title.",
+      "Reconciles": ""
+    },
+    {
+      "Step": "- Alternate stacked-snapshot rows set aside",
+      "Rows": -50,
+      "Why": "Dates holding two stacked 50-row snapshots: the snapshot least similar to neighbouring days is set aside (still present in the raw file).",
+      "Reconciles": ""
+    },
+    {
+      "Step": "- Duplicate song/date rows removed",
+      "Rows": 0,
+      "Why": "Repeated song on the same date after snapshot resolution; best rank kept.",
+      "Reconciles": ""
+    },
+    {
+      "Step": "= Clean records",
+      "Rows": 27750,
+      "Why": "Rows used by every analysis.",
+      "Reconciles": "yes"
+    },
+    {
+      "Step": "Info: exact duplicate rows in raw",
+      "Rows": 16,
+      "Why": "32 of the rows involved sit on stacked-snapshot dates (handled by snapshot resolution, not by blind deletion).",
+      "Reconciles": ""
+    },
+    {
+      "Step": "Info: rows with missing artist (filled 'Unknown Artist')",
+      "Rows": 0,
+      "Why": "Kept, flagged.",
+      "Reconciles": ""
+    }
+  ],
+  "kpis": {
+    "playlist_days": 555,
+    "unique_songs": 537,
+    "unique_artists": 193,
+    "total_reentries": 392,
+    "songs_with_reentries": 166,
+    "avg_momentum": 50.0,
+    "avg_retention_days": 15.900510204081632,
+    "median_retention_days": 4.0,
+    "avg_retention_snapshots": 14.887755102040817,
+    "right_censored_reentries": 10,
+    "top_fandom_artist": "Jimin",
+    "top_fandom_score": 100.0
+  },
+  "reentry_definition": {
+    "min_absent_snapshots": 3,
+    "total_stints": 929,
+    "reentry_events": 392
+  },
+  "momentum_pattern_counts": {
+    "Moderate / Stable": 145,
+    "Strong / Sustainable": 126,
+    "Weak / Short-lived": 117,
+    "Explosive / Short-lived": 4
+  },
+  "pattern_thresholds": {
+    "first_entry_high_momentum_threshold": 60.484984599589325,
+    "first_entry_low_momentum_threshold": 41.42800308008213,
+    "first_entry_retention_median": 5.0,
+    "high_momentum_threshold": 58.97940051020408,
+    "low_momentum_threshold": 39.923469387755105,
+    "retention_median": 3.0
+  },
+  "weight_sensitivity": {
+    "spearman_vs_equal_weights": 0.9954616069167823,
+    "n": 392,
+    "perturbation_median_rho": 0.9897198293918184,
+    "perturbation_min_rho": 0.9316281595235036,
+    "top10_overlap_vs_equal": 0.8,
+    "n_draws": 200
+  },
+  "momentum_summary": {
+    "momentum_score": {
+      "count": 392.0,
+      "mean": 50.0,
+      "std": 18.274,
+      "min": 11.027,
+      "25%": 34.688,
+      "50%": 48.96,
+      "75%": 64.362,
+      "max": 88.941
+    },
+    "retention_days": {
+      "count": 392.0,
+      "mean": 15.901,
+      "std": 33.321,
+      "min": 1.0,
+      "25%": 1.0,
+      "50%": 4.0,
+      "75%": 12.0,
+      "max": 296.0
+    },
+    "retention_snapshots": {
+      "count": 392.0,
+      "mean": 14.888,
+      "std": 32.294,
+      "min": 1.0,
+      "25%": 1.0,
+      "50%": 3.0,
+      "75%": 10.0,
+      "max": 292.0
+    },
+    "rank_jump": {
+      "count": 392.0,
+      "mean": 0.158,
+      "std": 6.279,
+      "min": -29.0,
+      "25%": -2.0,
+      "50%": 0.0,
+      "75%": 3.0,
+      "max": 28.0
+    },
+    "peak_improvement": {
+      "count": 392.0,
+      "mean": 4.824,
+      "std": 7.778,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 6.0,
+      "max": 41.0
+    },
+    "popularity_lift": {
+      "count": 392.0,
+      "mean": 0.339,
+      "std": 5.112,
+      "min": -56.0,
+      "25%": -1.0,
+      "50%": 0.0,
+      "75%": 1.0,
+      "max": 36.0
+    },
+    "recovery_speed": {
+      "count": 392.0,
+      "mean": 0.826,
+      "std": 4.484,
+      "min": -23.0,
+      "25%": -1.0,
+      "50%": 0.75,
+      "75%": 2.0,
+      "max": 22.0
+    },
+    "days_to_peak": {
+      "count": 392.0,
+      "mean": 5.166,
+      "std": 12.345,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 3.0,
+      "max": 125.0
+    }
+  },
+  "retention_findings": {
+    "median_retention_days": 4.0,
+    "mean_retention_days": 15.900510204081632,
+    "right_censored_lower_bound_events": 10,
+    "longest_retention_events": [
+      {
+        "song_label": "Rainbow \u2014 Lim Young Woong",
+        "reentry_date": "2024-07-31",
+        "reentry_position": 46.0,
+        "peak_rank": 14.0,
+        "retention_days": 296,
+        "retention_snapshots": 292,
+        "momentum_score": 81.42857142857143,
+        "is_right_censored": false
+      },
+      {
+        "song_label": "Our Blues, Our Life \u2014 Lim Young Woong",
+        "reentry_date": "2024-10-13",
+        "reentry_position": 39.0,
+        "peak_rank": 16.0,
+        "retention_days": 221,
+        "retention_snapshots": 211,
+        "momentum_score": 87.8890306122449,
+        "is_right_censored": false
+      },
+      {
+        "song_label": "A bientot \u2014 Lim Young Woong",
+        "reentry_date": "2024-10-13",
+        "reentry_position": 45.0,
+        "peak_rank": 18.0,
+        "retention_days": 196,
+        "retention_snapshots": 191,
+        "momentum_score": 85.24872448979592,
+        "is_right_censored": false
+      },
+      {
+        "song_label": "Interlude : Dive \u2014 Jimin",
+        "reentry_date": "2024-10-06",
+        "reentry_position": 37.0,
+        "peak_rank": 17.0,
+        "retention_days": 148,
+        "retention_snapshots": 134,
+        "momentum_score": 72.1811224489796,
+        "is_right_censored": false
+      },
+      {
+        "song_label": "ETA \u2014 NewJeans",
+        "reentry_date": "2024-11-23",
+        "reentry_position": 48.0,
+        "peak_rank": 31.0,
+        "retention_days": 147,
+        "retention_snapshots": 139,
+        "momentum_score": 67.15561224489797,
+        "is_right_censored": false
+      }
+    ]
+  },
+  "top_comeback_songs": [
+    {
+      "song_label": "Who (Instrumental) \u2014 Jimin",
+      "reentry_date": "2025-09-22",
+      "reentry_position": 30.0,
+      "peak_rank": 17.0,
+      "retention_days": 67,
+      "retention_snapshots": 61,
+      "momentum_score": 88.94132653061226
+    },
+    {
+      "song_label": "Our Blues, Our Life \u2014 Lim Young Woong",
+      "reentry_date": "2024-10-13",
+      "reentry_position": 39.0,
+      "peak_rank": 16.0,
+      "retention_days": 221,
+      "retention_snapshots": 211,
+      "momentum_score": 87.8890306122449
+    },
+    {
+      "song_label": "Fry\u2019s Dream \u2014 AKMU",
+      "reentry_date": "2024-09-05",
+      "reentry_position": 41.0,
+      "peak_rank": 18.0,
+      "retention_days": 52,
+      "retention_snapshots": 50,
+      "momentum_score": 87.8061224489796
+    },
+    {
+      "song_label": "Who (Shibuyakei Remix) \u2014 Jimin",
+      "reentry_date": "2025-09-22",
+      "reentry_position": 31.0,
+      "peak_rank": 20.0,
+      "retention_days": 67,
+      "retention_snapshots": 60,
+      "momentum_score": 87.38520408163266
+    },
+    {
+      "song_label": "Who (Beautiful Mind Remix) \u2014 Jimin",
+      "reentry_date": "2025-09-22",
+      "reentry_position": 32.0,
+      "peak_rank": 20.0,
+      "retention_days": 56,
+      "retention_snapshots": 48,
+      "momentum_score": 87.04081632653062
+    },
+    {
+      "song_label": "Get A Guitar \u2014 RIIZE",
+      "reentry_date": "2024-12-28",
+      "reentry_position": 38.0,
+      "peak_rank": 23.0,
+      "retention_days": 92,
+      "retention_snapshots": 90,
+      "momentum_score": 86.77295918367346
+    },
+    {
+      "song_label": "All I Want for Christmas Is You \u2014 Mariah Carey",
+      "reentry_date": "2024-12-17",
+      "reentry_position": 24.0,
+      "peak_rank": 9.0,
+      "retention_days": 11,
+      "retention_snapshots": 11,
+      "momentum_score": 86.14795918367346
+    },
+    {
+      "song_label": "Lucky Girl Syndrome \u2014 ILLIT",
+      "reentry_date": "2025-04-23",
+      "reentry_position": 44.0,
+      "peak_rank": 21.0,
+      "retention_days": 52,
+      "retention_snapshots": 47,
+      "momentum_score": 85.53571428571429
+    },
+    {
+      "song_label": "Who (Funky Remix) \u2014 Jimin",
+      "reentry_date": "2025-09-22",
+      "reentry_position": 34.0,
+      "peak_rank": 23.0,
+      "retention_days": 67,
+      "retention_snapshots": 56,
+      "momentum_score": 85.53571428571428
+    },
+    {
+      "song_label": "A bientot \u2014 Lim Young Woong",
+      "reentry_date": "2024-10-13",
+      "reentry_position": 45.0,
+      "peak_rank": 18.0,
+      "retention_days": 196,
+      "retention_snapshots": 191,
+      "momentum_score": 85.24872448979592
+    }
+  ],
+  "artist_leaderboards": {
+    "Top by frequency": [
+      {
+        "artist": "Lim Young Woong",
+        "unique_songs": 23,
+        "reentry_count": 72,
+        "mean_momentum": 50.72,
+        "median_momentum": 49.652,
+        "mean_retention_days": 25.944,
+        "fandom_score": 75.238,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "NewJeans",
+        "unique_songs": 21,
+        "reentry_count": 62,
+        "mean_momentum": 49.408,
+        "median_momentum": 48.284,
+        "mean_retention_days": 16.5,
+        "fandom_score": 59.35,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Jimin",
+        "unique_songs": 24,
+        "reentry_count": 35,
+        "mean_momentum": 57.186,
+        "median_momentum": 59.101,
+        "mean_retention_days": 26.743,
+        "fandom_score": 100.0,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Jung Kook",
+        "unique_songs": 14,
+        "reentry_count": 27,
+        "mean_momentum": 41.754,
+        "median_momentum": 38.756,
+        "mean_retention_days": 5.667,
+        "fandom_score": 21.756,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "DAY6",
+        "unique_songs": 12,
+        "reentry_count": 11,
+        "mean_momentum": 61.856,
+        "median_momentum": 69.821,
+        "mean_retention_days": 31.455,
+        "fandom_score": 95.402,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Charlie Puth",
+        "unique_songs": 3,
+        "reentry_count": 10,
+        "mean_momentum": 47.663,
+        "median_momentum": 50.029,
+        "mean_retention_days": 8.1,
+        "fandom_score": 41.576,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "RIIZE",
+        "unique_songs": 10,
+        "reentry_count": 10,
+        "mean_momentum": 54.403,
+        "median_momentum": 53.89,
+        "mean_retention_days": 15.6,
+        "fandom_score": 70.918,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "LE SSERAFIM",
+        "unique_songs": 14,
+        "reentry_count": 9,
+        "mean_momentum": 52.893,
+        "median_momentum": 51.091,
+        "mean_retention_days": 13.222,
+        "fandom_score": 56.909,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Taylor Swift",
+        "unique_songs": 7,
+        "reentry_count": 8,
+        "mean_momentum": 51.389,
+        "median_momentum": 50.784,
+        "mean_retention_days": 22.125,
+        "fandom_score": 52.235,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "V",
+        "unique_songs": 16,
+        "reentry_count": 7,
+        "mean_momentum": 37.489,
+        "median_momentum": 44.809,
+        "mean_retention_days": 6.571,
+        "fandom_score": 8.326,
+        "confidence": "Medium (3-9)"
+      }
+    ],
+    "Top by momentum": [
+      {
+        "artist": "Mitski",
+        "unique_songs": 1,
+        "reentry_count": 4,
+        "mean_momentum": 63.265,
+        "median_momentum": 59.633,
+        "mean_retention_days": 20.5,
+        "fandom_score": 64.743,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "DAY6",
+        "unique_songs": 12,
+        "reentry_count": 11,
+        "mean_momentum": 61.856,
+        "median_momentum": 69.821,
+        "mean_retention_days": 31.455,
+        "fandom_score": 95.402,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Jimin",
+        "unique_songs": 24,
+        "reentry_count": 35,
+        "mean_momentum": 57.186,
+        "median_momentum": 59.101,
+        "mean_retention_days": 26.743,
+        "fandom_score": 100.0,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "RIIZE",
+        "unique_songs": 10,
+        "reentry_count": 10,
+        "mean_momentum": 54.403,
+        "median_momentum": 53.89,
+        "mean_retention_days": 15.6,
+        "fandom_score": 70.918,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Agust D",
+        "unique_songs": 2,
+        "reentry_count": 5,
+        "mean_momentum": 54.152,
+        "median_momentum": 51.078,
+        "mean_retention_days": 50.6,
+        "fandom_score": 56.432,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "aespa",
+        "unique_songs": 21,
+        "reentry_count": 4,
+        "mean_momentum": 53.866,
+        "median_momentum": 51.677,
+        "mean_retention_days": 18.25,
+        "fandom_score": 46.961,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "\u00a5$ & Kanye West & Ty Dolla $ign",
+        "unique_songs": 6,
+        "reentry_count": 3,
+        "mean_momentum": 53.695,
+        "median_momentum": 48.916,
+        "mean_retention_days": 3.667,
+        "fandom_score": 45.596,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Nerd Connection",
+        "unique_songs": 1,
+        "reentry_count": 4,
+        "mean_momentum": 53.442,
+        "median_momentum": 56.977,
+        "mean_retention_days": 15.5,
+        "fandom_score": 46.368,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "LE SSERAFIM",
+        "unique_songs": 14,
+        "reentry_count": 9,
+        "mean_momentum": 52.893,
+        "median_momentum": 51.091,
+        "mean_retention_days": 13.222,
+        "fandom_score": 56.909,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "PLAVE",
+        "unique_songs": 3,
+        "reentry_count": 3,
+        "mean_momentum": 52.462,
+        "median_momentum": 60.784,
+        "mean_retention_days": 5.0,
+        "fandom_score": 28.174,
+        "confidence": "Medium (3-9)"
+      }
+    ],
+    "Top by fandom proxy": [
+      {
+        "artist": "Jimin",
+        "unique_songs": 24,
+        "reentry_count": 35,
+        "mean_momentum": 57.186,
+        "median_momentum": 59.101,
+        "mean_retention_days": 26.743,
+        "fandom_score": 100.0,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "DAY6",
+        "unique_songs": 12,
+        "reentry_count": 11,
+        "mean_momentum": 61.856,
+        "median_momentum": 69.821,
+        "mean_retention_days": 31.455,
+        "fandom_score": 95.402,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Lim Young Woong",
+        "unique_songs": 23,
+        "reentry_count": 72,
+        "mean_momentum": 50.72,
+        "median_momentum": 49.652,
+        "mean_retention_days": 25.944,
+        "fandom_score": 75.238,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "RIIZE",
+        "unique_songs": 10,
+        "reentry_count": 10,
+        "mean_momentum": 54.403,
+        "median_momentum": 53.89,
+        "mean_retention_days": 15.6,
+        "fandom_score": 70.918,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Mitski",
+        "unique_songs": 1,
+        "reentry_count": 4,
+        "mean_momentum": 63.265,
+        "median_momentum": 59.633,
+        "mean_retention_days": 20.5,
+        "fandom_score": 64.743,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "NewJeans",
+        "unique_songs": 21,
+        "reentry_count": 62,
+        "mean_momentum": 49.408,
+        "median_momentum": 48.284,
+        "mean_retention_days": 16.5,
+        "fandom_score": 59.35,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "LE SSERAFIM",
+        "unique_songs": 14,
+        "reentry_count": 9,
+        "mean_momentum": 52.893,
+        "median_momentum": 51.091,
+        "mean_retention_days": 13.222,
+        "fandom_score": 56.909,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Agust D",
+        "unique_songs": 2,
+        "reentry_count": 5,
+        "mean_momentum": 54.152,
+        "median_momentum": 51.078,
+        "mean_retention_days": 50.6,
+        "fandom_score": 56.432,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Taylor Swift",
+        "unique_songs": 7,
+        "reentry_count": 8,
+        "mean_momentum": 51.389,
+        "median_momentum": 50.784,
+        "mean_retention_days": 22.125,
+        "fandom_score": 52.235,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "aespa",
+        "unique_songs": 21,
+        "reentry_count": 4,
+        "mean_momentum": 53.866,
+        "median_momentum": 51.677,
+        "mean_retention_days": 18.25,
+        "fandom_score": 46.961,
+        "confidence": "Medium (3-9)"
+      }
+    ],
+    "Top by retention": [
+      {
+        "artist": "Agust D",
+        "unique_songs": 2,
+        "reentry_count": 5,
+        "mean_momentum": 54.152,
+        "median_momentum": 51.078,
+        "mean_retention_days": 50.6,
+        "fandom_score": 56.432,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "DAY6",
+        "unique_songs": 12,
+        "reentry_count": 11,
+        "mean_momentum": 61.856,
+        "median_momentum": 69.821,
+        "mean_retention_days": 31.455,
+        "fandom_score": 95.402,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Jimin",
+        "unique_songs": 24,
+        "reentry_count": 35,
+        "mean_momentum": 57.186,
+        "median_momentum": 59.101,
+        "mean_retention_days": 26.743,
+        "fandom_score": 100.0,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Lim Young Woong",
+        "unique_songs": 23,
+        "reentry_count": 72,
+        "mean_momentum": 50.72,
+        "median_momentum": 49.652,
+        "mean_retention_days": 25.944,
+        "fandom_score": 75.238,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "Taylor Swift",
+        "unique_songs": 7,
+        "reentry_count": 8,
+        "mean_momentum": 51.389,
+        "median_momentum": 50.784,
+        "mean_retention_days": 22.125,
+        "fandom_score": 52.235,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Mitski",
+        "unique_songs": 1,
+        "reentry_count": 4,
+        "mean_momentum": 63.265,
+        "median_momentum": 59.633,
+        "mean_retention_days": 20.5,
+        "fandom_score": 64.743,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "Fast & Furious: The Fast Saga & Jimin & BTS",
+        "unique_songs": 3,
+        "reentry_count": 4,
+        "mean_momentum": 49.018,
+        "median_momentum": 49.078,
+        "mean_retention_days": 18.75,
+        "fandom_score": 43.108,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "aespa",
+        "unique_songs": 21,
+        "reentry_count": 4,
+        "mean_momentum": 53.866,
+        "median_momentum": 51.677,
+        "mean_retention_days": 18.25,
+        "fandom_score": 46.961,
+        "confidence": "Medium (3-9)"
+      },
+      {
+        "artist": "NewJeans",
+        "unique_songs": 21,
+        "reentry_count": 62,
+        "mean_momentum": 49.408,
+        "median_momentum": 48.284,
+        "mean_retention_days": 16.5,
+        "fandom_score": 59.35,
+        "confidence": "High (10+)"
+      },
+      {
+        "artist": "RIIZE",
+        "unique_songs": 10,
+        "reentry_count": 10,
+        "mean_momentum": 54.403,
+        "median_momentum": 53.89,
+        "mean_retention_days": 15.6,
+        "fandom_score": 70.918,
+        "confidence": "High (10+)"
+      }
+    ]
+  },
+  "content_findings": [
+    {
+      "comparison": "single vs album",
+      "type": "Mann-Whitney U",
+      "group_a": "single",
+      "group_b": "album",
+      "metric": "momentum_score",
+      "n_a": 230,
+      "n_b": 162,
+      "median_a": 48.558673469387756,
+      "median_b": 49.83099489795919,
+      "mean_a": 49.059893522626446,
+      "mean_b": 51.334719072814316,
+      "p_value": 0.2787406207262142,
+      "cliffs_delta": -0.0642512077294686,
+      "effect": "negligible"
+    },
+    {
+      "comparison": "single vs album",
+      "type": "Mann-Whitney U",
+      "group_a": "single",
+      "group_b": "album",
+      "metric": "retention_days",
+      "n_a": 230,
+      "n_b": 162,
+      "median_a": 3.0,
+      "median_b": 4.0,
+      "mean_a": 13.326086956521738,
+      "mean_b": 19.555555555555557,
+      "p_value": 0.18544405479855275,
+      "cliffs_delta": -0.07750939345142244,
+      "effect": "negligible"
+    },
+    {
+      "comparison": "single vs album",
+      "type": "Fisher exact (re-entry rate)",
+      "metric": "reentry_rate",
+      "group_a": "single",
+      "group_b": "album",
+      "n_a": 304,
+      "n_b": 232,
+      "rate_a": 0.3519736842105263,
+      "rate_b": 0.2543103448275862,
+      "odds_ratio": 1.592618084831799,
+      "p_value": 0.018320132020095185
+    },
+    {
+      "comparison": "Explicit vs Clean",
+      "type": "Mann-Whitney U",
+      "group_a": "Explicit",
+      "group_b": "Clean",
+      "metric": "momentum_score",
+      "n_a": 17,
+      "n_b": 375,
+      "median_a": 51.485969387755105,
+      "median_b": 48.788265306122454,
+      "mean_a": 50.64000600240096,
+      "mean_b": 49.97098639455783,
+      "p_value": 0.8072119421240134,
+      "cliffs_delta": 0.035137254901960784,
+      "effect": "negligible"
+    },
+    {
+      "comparison": "Explicit vs Clean",
+      "type": "Mann-Whitney U",
+      "group_a": "Explicit",
+      "group_b": "Clean",
+      "metric": "retention_days",
+      "n_a": 17,
+      "n_b": 375,
+      "median_a": 3.0,
+      "median_b": 4.0,
+      "mean_a": 5.176470588235294,
+      "mean_b": 16.386666666666667,
+      "p_value": 0.4938658997442813,
+      "cliffs_delta": -0.09694117647058824,
+      "effect": "negligible"
+    },
+    {
+      "comparison": "Explicit vs Clean",
+      "type": "Fisher exact (re-entry rate)",
+      "metric": "reentry_rate",
+      "group_a": "Explicit",
+      "group_b": "Clean",
+      "n_a": 98,
+      "n_b": 439,
+      "rate_a": 0.11224489795918367,
+      "rate_b": 0.3530751708428246,
+      "odds_ratio": 0.23166481275491288,
+      "p_value": 9.117111587524434e-07
+    },
+    {
+      "comparison": "album_size_bin",
+      "type": "Kruskal-Wallis",
+      "metric": "momentum_score",
+      "n_groups": 4,
+      "n": 392,
+      "H": 2.3735036560228457,
+      "p_value": 0.4985859659510091
+    },
+    {
+      "comparison": "album_size_bin",
+      "type": "Kruskal-Wallis",
+      "metric": "retention_days",
+      "n_groups": 4,
+      "n": 392,
+      "H": 2.483910219396482,
+      "p_value": 0.4782058860306677
+    },
+    {
+      "comparison": "duration_bin",
+      "type": "Kruskal-Wallis",
+      "metric": "momentum_score",
+      "n_groups": 4,
+      "n": 392,
+      "H": 9.047254107718864,
+      "p_value": 0.028669170280182305
+    },
+    {
+      "comparison": "duration_bin",
+      "type": "Kruskal-Wallis",
+      "metric": "retention_days",
+      "n_groups": 4,
+      "n": 392,
+      "H": 7.268934513820138,
+      "p_value": 0.06380240617203302
+    },
+    {
+      "comparison": "Duration (min) vs momentum_score",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.052935017561943416,
+      "p_value": 0.2958168603167435
+    },
+    {
+      "comparison": "Duration (min) vs retention_days",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.02310511506242799,
+      "p_value": 0.6483483058026948
+    },
+    {
+      "comparison": "Duration (min) vs retention_snapshots",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.027226894767628858,
+      "p_value": 0.5909615280113818
+    },
+    {
+      "comparison": "Duration (min) vs popularity_lift",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.11258594042192926,
+      "p_value": 0.0258098558971859
+    },
+    {
+      "comparison": "Duration (min) vs recovery_speed",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.007681155228956157,
+      "p_value": 0.8795058315961218
+    },
+    {
+      "comparison": "Album size (tracks) vs momentum_score",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.05266152457955184,
+      "p_value": 0.29832264275584214
+    },
+    {
+      "comparison": "Album size (tracks) vs retention_days",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.06135456624752504,
+      "p_value": 0.22550423719179516
+    },
+    {
+      "comparison": "Album size (tracks) vs retention_snapshots",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.06130592639662908,
+      "p_value": 0.22587294221696785
+    },
+    {
+      "comparison": "Album size (tracks) vs popularity_lift",
+      "type": "Spearman",
+      "n": 392,
+      "rho": 0.10765068184129778,
+      "p_value": 0.03310860700269796
+    },
+    {
+      "comparison": "Album size (tracks) vs recovery_speed",
+      "type": "Spearman",
+      "n": 392,
+      "rho": -0.03704470793546533,
+      "p_value": 0.46456135269810533
+    },
+    {
+      "comparison": "Duration (min) vs reentry_count",
+      "type": "Spearman",
+      "n": 537,
+      "rho": -0.000633347972891215,
+      "p_value": 0.9883173619714855
+    },
+    {
+      "comparison": "Album size (tracks) vs reentry_count",
+      "type": "Spearman",
+      "n": 537,
+      "rho": -0.09434255711545274,
+      "p_value": 0.028815033995611455
+    }
+  ],
+  "insights": [
+    {
+      "category": "Momentum",
+      "title": "Highest comeback momentum",
+      "text": "Who (Instrumental) \u2014 Jimin re-entered on 22 Sep 2025 at rank 30 with the highest momentum score (88.9/100), peaking at rank 17 and staying 61 snapshots."
+    },
+    {
+      "category": "Frequency",
+      "title": "Most frequent re-entries",
+      "text": "Ditto \u2014 NewJeans has the most re-entries in the selection (17), returning after a mean gap of 9.9 days."
+    },
+    {
+      "category": "Retention",
+      "title": "Longest post-comeback retention",
+      "text": "Rainbow \u2014 Lim Young Woong stayed on the Top 50 for 296 calendar days (292 observed snapshots) after its 31 Jul 2024 re-entry."
+    },
+    {
+      "category": "Recovery",
+      "title": "Fastest rank recovery",
+      "text": "With you \u2014 Jimin & HA SUNG WOON recovered 22 rank places (50 -> 28) in 1 day(s): 22.0 places/day."
+    },
+    {
+      "category": "Artist",
+      "title": "Strongest artist comeback behaviour",
+      "text": "Among artists with at least 3 re-entries, Jimin has the highest fandom intensity proxy (100/100, 35 re-entries across 24 songs, mean momentum 57.2)."
+    },
+    {
+      "category": "Content",
+      "title": "Single vs album",
+      "text": "Re-entries of album-track songs have a higher median momentum (49.8) than single songs (48.6); n=230 vs 162. The difference is not statistically distinguishable (Mann-Whitney p=0.279, effect size negligible). Association only."
+    },
+    {
+      "category": "Content",
+      "title": "Explicit vs clean",
+      "text": "Re-entries of Explicit songs have a higher median momentum (51.5) than Clean songs (48.8); n=17 vs 375. The difference is not statistically distinguishable (Mann-Whitney p=0.807, effect size negligible). Association only."
+    },
+    {
+      "category": "Content",
+      "title": "Re-entry rate: single vs album",
+      "text": "single songs: 35% had a re-entry (0.24 per 100 exposure days, n=304); album songs: 25% (0.22 per 100 exposure days, n=232); Fisher exact p=0.018. The share-of-songs rate does not adjust for how long songs stay on the chart (median appearances: single 17, album 6), so read the exposure-adjusted figure as the fairer comparison. Association only."
+    },
+    {
+      "category": "Content",
+      "title": "Re-entry rate: explicit vs clean",
+      "text": "Explicit songs: 11% had a re-entry (0.05 per 100 exposure days, n=98); Clean songs: 35% (0.27 per 100 exposure days, n=439); Fisher exact p<0.001. The share-of-songs rate does not adjust for how long songs stay on the chart (median appearances: Explicit 3, Clean 17), so read the exposure-adjusted figure as the fairer comparison. Association only."
+    },
+    {
+      "category": "Content",
+      "title": "Duration relationship",
+      "text": "Longer songs are associated with higher momentum (Spearman rho=0.05, p=0.296, n=392); the association is weak."
+    },
+    {
+      "category": "Patterns",
+      "title": "Unusual momentum patterns",
+      "text": "No re-entry exceeds the IQR outlier fence (108.9); momentum is evenly spread. 14% of re-entries followed an absence of 30+ observed snapshots, and 3% were still on chart when data ended."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 62.726077977345305,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "HERO \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "2 re-entries | mean momentum 65.5 | mean retention 56.0 days (55.0 snapshots) | fandom proxy 63",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 2
+    },
+    {
+      "priority": 95.66879445939465,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Interlude : Dive \u2014 Jimin",
+      "artist": "Jimin",
+      "evidence": "6 re-entries | mean momentum 63.7 | mean retention 63.3 days (60.2 snapshots) | fandom proxy 96",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 6
+    },
+    {
+      "priority": 100.0,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Our Blues, Our Life \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "10 re-entries | mean momentum 62.9 | mean retention 34.1 days (31.4 snapshots) | fandom proxy 100",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 10
+    },
+    {
+      "priority": 80.22795544151703,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Get A Guitar \u2014 RIIZE",
+      "artist": "RIIZE",
+      "evidence": "4 re-entries | mean momentum 62.2 | mean retention 30.5 days (29.2 snapshots) | fandom proxy 80",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 4
+    },
+    {
+      "priority": 55.60735965955319,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Angel Pt. 1 (feat. Jimin of BTS, JVKE & Muni Long) - Trailer Version \u2014 Fast & Furious: The Fast Saga & Jimin & BTS",
+      "artist": "Fast & Furious: The Fast Saga & Jimin & BTS",
+      "evidence": "2 re-entries | mean momentum 62.1 | mean retention 36.0 days (34.5 snapshots) | fandom proxy 56",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 2
+    },
+    {
+      "priority": 61.27436792039558,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Who (Beautiful Mind Remix) \u2014 Jimin",
+      "artist": "Jimin",
+      "evidence": "3 re-entries | mean momentum 60.0 | mean retention 23.7 days (lower bound) (20.0 snapshots) | fandom proxy 61",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 3
+    },
+    {
+      "priority": 46.33268665122978,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Welcome to the Show \u2014 DAY6",
+      "artist": "DAY6",
+      "evidence": "2 re-entries | mean momentum 57.6 | mean retention 42.5 days (41.5 snapshots) | fandom proxy 46",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 2
+    },
+    {
+      "priority": 62.5964156079855,
+      "rule": "HIGH MOMENTUM + HIGH RETENTION",
+      "level": "Song",
+      "entity": "Haegeum \u2014 Agust D",
+      "artist": "Agust D",
+      "evidence": "3 re-entries | mean momentum 57.3 | mean retention 42.0 days (41.0 snapshots) | fandom proxy 63",
+      "recommended_action": "Candidate for extended promotional investment (strong and sustained comebacks).",
+      "n_events": 3
+    },
+    {
+      "priority": 47.919143876337706,
+      "rule": "HIGH MOMENTUM + LOW RETENTION",
+      "level": "Song",
+      "entity": "Dangerously \u2014 Charlie Puth",
+      "artist": "Charlie Puth",
+      "evidence": "2 re-entries | mean momentum 56.3 | mean retention 4.5 days (3.5 snapshots) | fandom proxy 48",
+      "recommended_action": "Strong short-term activation opportunity (time-boxed push around the spike).",
+      "n_events": 2
+    },
+    {
+      "priority": 46.08861630890545,
+      "rule": "HIGH MOMENTUM + LOW RETENTION",
+      "level": "Song",
+      "entity": "CARNIVAL \u2014 \u00a5$ & Kanye West & Ty Dolla $ign",
+      "artist": "\u00a5$ & Kanye West & Ty Dolla $ign",
+      "evidence": "2 re-entries | mean momentum 56.1 | mean retention 4.5 days (4.0 snapshots) | fandom proxy 46",
+      "recommended_action": "Strong short-term activation opportunity (time-boxed push around the spike).",
+      "n_events": 2
+    },
+    {
+      "priority": 45.559797233869475,
+      "rule": "HIGH MOMENTUM + LOW RETENTION",
+      "level": "Song",
+      "entity": "Dreamers [Music from the FIFA World Cup Qatar 2022 Official Soundtrack] \u2014 Jung Kook & BTS",
+      "artist": "Jung Kook & BTS",
+      "evidence": "2 re-entries | mean momentum 56.0 | mean retention 3.0 days (3.0 snapshots) | fandom proxy 46",
+      "recommended_action": "Strong short-term activation opportunity (time-boxed push around the spike).",
+      "n_events": 2
+    },
+    {
+      "priority": 53.7323401026347,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "Ditto \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "17 re-entries | mean momentum 48.5 | mean retention 12.7 days (12.0 snapshots) | fandom proxy 54",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 17
+    },
+    {
+      "priority": 51.21441129764066,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "A bientot \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "13 re-entries | mean momentum 45.3 | mean retention 18.8 days (18.1 snapshots) | fandom proxy 51",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 13
+    },
+    {
+      "priority": 36.74275611740413,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "Hype Boy \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "12 re-entries | mean momentum 43.3 | mean retention 14.4 days (13.7 snapshots) | fandom proxy 37",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 12
+    },
+    {
+      "priority": 100.0,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "Our Blues, Our Life \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "10 re-entries | mean momentum 62.9 | mean retention 34.1 days (31.4 snapshots) | fandom proxy 100",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 10
+    },
+    {
+      "priority": 68.88249812253588,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "New Jeans \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "9 re-entries | mean momentum 54.1 | mean retention 20.2 days (18.6 snapshots) | fandom proxy 69",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 9
+    },
+    {
+      "priority": 16.852872235718458,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "Closer to You (feat. Major Lazer) \u2014 Jung Kook",
+      "artist": "Jung Kook",
+      "evidence": "8 re-entries | mean momentum 37.9 | mean retention 2.8 days (2.4 snapshots) | fandom proxy 17",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 8
+    },
+    {
+      "priority": 85.48841092570359,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "OMG \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "8 re-entries | mean momentum 61.3 | mean retention 20.4 days (19.1 snapshots) | fandom proxy 85",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 8
+    },
+    {
+      "priority": 59.78452187245761,
+      "rule": "MULTIPLE RE-ENTRIES",
+      "level": "Song",
+      "entity": "Christmas Love \u2014 Jimin",
+      "artist": "Jimin",
+      "evidence": "7 re-entries | mean momentum 50.9 | mean retention 4.6 days (3.7 snapshots) | fandom proxy 60",
+      "recommended_action": "Strong catalogue-reactivation candidate.",
+      "n_events": 7
+    },
+    {
+      "priority": 53.7323401026347,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "Ditto \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "17 re-entries | mean momentum 48.5 | mean retention 12.7 days (12.0 snapshots) | fandom proxy 54",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 17
+    },
+    {
+      "priority": 51.21441129764066,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "A bientot \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "13 re-entries | mean momentum 45.3 | mean retention 18.8 days (18.1 snapshots) | fandom proxy 51",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 13
+    },
+    {
+      "priority": 36.74275611740413,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "Hype Boy \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "12 re-entries | mean momentum 43.3 | mean retention 14.4 days (13.7 snapshots) | fandom proxy 37",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 12
+    },
+    {
+      "priority": 16.852872235718458,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "Closer to You (feat. Major Lazer) \u2014 Jung Kook",
+      "artist": "Jung Kook",
+      "evidence": "8 re-entries | mean momentum 37.9 | mean retention 2.8 days (2.4 snapshots) | fandom proxy 17",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 8
+    },
+    {
+      "priority": 56.509911446273264,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "ETA \u2014 NewJeans",
+      "artist": "NewJeans",
+      "evidence": "7 re-entries | mean momentum 48.9 | mean retention 34.1 days (32.1 snapshots) | fandom proxy 57",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 7
+    },
+    {
+      "priority": 52.00732211026974,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "I Love You \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "6 re-entries | mean momentum 47.0 | mean retention 23.7 days (22.5 snapshots) | fandom proxy 52",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 6
+    },
+    {
+      "priority": 35.62473598160087,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "Left and Right (Feat. Jung Kook of BTS) \u2014 Charlie Puth",
+      "artist": "Charlie Puth",
+      "evidence": "5 re-entries | mean momentum 47.1 | mean retention 12.8 days (12.4 snapshots) | fandom proxy 36",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 5
+    },
+    {
+      "priority": 47.74335511787795,
+      "rule": "LOW MOMENTUM + HIGH RE-ENTRY FREQUENCY",
+      "level": "Song",
+      "entity": "With you \u2014 Jimin & HA SUNG WOON",
+      "artist": "Jimin & HA SUNG WOON",
+      "evidence": "4 re-entries | mean momentum 45.7 | mean retention 5.2 days (5.2 snapshots) | fandom proxy 48",
+      "recommended_action": "Investigate recurring event-driven spikes (external events are not observed in this data).",
+      "n_events": 4
+    },
+    {
+      "priority": 100.0,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "Jimin",
+      "artist": "Jimin",
+      "evidence": "35 re-entries across 14 of 24 songs | mean momentum 57.2 | mean retention 26.7 days | fandom proxy 100 | confidence High (10+)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 35
+    },
+    {
+      "priority": 95.40150041678243,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "DAY6",
+      "artist": "DAY6",
+      "evidence": "11 re-entries across 4 of 12 songs | mean momentum 61.9 | mean retention 31.5 days | fandom proxy 95 | confidence High (10+)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 11
+    },
+    {
+      "priority": 75.23843203198581,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "72 re-entries across 19 of 23 songs | mean momentum 50.7 | mean retention 25.9 days | fandom proxy 75 | confidence High (10+)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 72
+    },
+    {
+      "priority": 70.91784755024541,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "RIIZE",
+      "artist": "RIIZE",
+      "evidence": "10 re-entries across 4 of 10 songs | mean momentum 54.4 | mean retention 15.6 days | fandom proxy 71 | confidence High (10+)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 10
+    },
+    {
+      "priority": 64.74329289000032,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "Mitski",
+      "artist": "Mitski",
+      "evidence": "4 re-entries across 1 of 1 songs | mean momentum 63.3 | mean retention 20.5 days | fandom proxy 65 | confidence Medium (3-9)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 4
+    },
+    {
+      "priority": 59.35023410317126,
+      "rule": "HIGH ARTIST FANDOM PROXY",
+      "level": "Artist",
+      "entity": "NewJeans",
+      "artist": "NewJeans",
+      "evidence": "62 re-entries across 9 of 21 songs | mean momentum 49.4 | mean retention 16.5 days | fandom proxy 59 | confidence High (10+)",
+      "recommended_action": "Prioritise targeted fan-engagement campaigns.",
+      "n_events": 62
+    },
+    {
+      "priority": 81.738867084477,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "You Were Beautiful \u2014 DAY6",
+      "artist": "DAY6",
+      "evidence": "4 re-entries | mean momentum 70.9 | mean retention 17.8 days (14.8 snapshots) | fandom proxy 82",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 4
+    },
+    {
+      "priority": 77.20613215559707,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "My Love Mine All Mine \u2014 Mitski",
+      "artist": "Mitski",
+      "evidence": "4 re-entries | mean momentum 63.3 | mean retention 20.5 days (19.0 snapshots) | fandom proxy 77",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 4
+    },
+    {
+      "priority": 100.0,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "Our Blues, Our Life \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "10 re-entries | mean momentum 62.9 | mean retention 34.1 days (31.4 snapshots) | fandom proxy 100",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 10
+    },
+    {
+      "priority": 59.553163527129385,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "STUPID IN LOVE (feat. HUH YUNJIN of LE SSERAFIM) \u2014 MAX",
+      "artist": "MAX",
+      "evidence": "2 re-entries | mean momentum 62.5 | mean retention 15.5 days (15.0 snapshots) | fandom proxy 60",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 2
+    },
+    {
+      "priority": 53.37004818824709,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "double take \u2014 Dhruv",
+      "artist": "Dhruv",
+      "evidence": "2 re-entries | mean momentum 61.0 | mean retention 15.5 days (14.0 snapshots) | fandom proxy 53",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 2
+    },
+    {
+      "priority": 61.27436792039558,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "Who (Beautiful Mind Remix) \u2014 Jimin",
+      "artist": "Jimin",
+      "evidence": "3 re-entries | mean momentum 60.0 | mean retention 23.7 days (lower bound) (20.0 snapshots) | fandom proxy 61",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 3
+    },
+    {
+      "priority": 69.53534996826191,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "Love Letter \u2014 Lim Young Woong",
+      "artist": "Lim Young Woong",
+      "evidence": "4 re-entries | mean momentum 59.5 | mean retention 19.8 days (18.2 snapshots) | fandom proxy 70",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 4
+    },
+    {
+      "priority": 46.33268665122978,
+      "rule": "HIGH ALBUM-TRACK MOMENTUM",
+      "level": "Song",
+      "entity": "Welcome to the Show \u2014 DAY6",
+      "artist": "DAY6",
+      "evidence": "2 re-entries | mean momentum 57.6 | mean retention 42.5 days (41.5 snapshots) | fandom proxy 46",
+      "recommended_action": "Investigate non-single promotional opportunities.",
+      "n_events": 2
+    }
+  ],
+  "recommendation_notes": [
+    "Album tracks show a higher median re-entry momentum (49.8, n=162) than singles (48.6, n=230); difference not statistically distinguishable (p=0.279, effect negligible). Investigate non-single promotional opportunities - directional only."
+  ],
+  "recommendation_thresholds": {
+    "high momentum (P75 of mean momentum)": 55.95025510204082,
+    "median mean-momentum": 49.55038265306122,
+    "high retention (P75, days)": 22.666666666666668,
+    "low retention (P40, days)": 5.700000000000001,
+    "multiple re-entries (>= max(3, P90))": 7.0,
+    "frequent re-entries (>= max(3, P75))": 4.0,
+    "artist fandom proxy high (P80, >=3 events)": 57.88529270450037
+  },
+  "limitations": [
+    "The data are observed daily Top-50 playlist snapshots, i.e. observed chart behaviour only.",
+    "The Fandom Intensity Proxy is a behavioural proxy; playlist position is not a direct measure of total fandom size.",
+    "Correlation does not establish causation; content findings are associations.",
+    "Missing calendar dates can affect time-based interpretation; they are never treated as exits or as presence.",
+    "Popularity scores are platform/API-derived and may be updated with a lag or use opaque methodology.",
+    "External causes (releases, tours, TV, promotions, social trends) are not observed in this dataset.",
+    "A Top-50 cut-off censors information: songs just below rank 50 are invisible, and exits near rank 50 can be rank noise (hence the adjustable minimum-absence threshold).",
+    "Songs on the chart at the start (left-censored) or still on it at the end (right-censored) have incomplete histories; retention for the latter is a lower bound.",
+    "Momentum scores are relative (percentile-based within re-entries); 50 means a typical re-entry, not an absolute level.",
+    "Events from the same song/artist are not independent; statistical p-values are indicative.",
+    "One date (01-03-2025) held two stacked snapshots; the retained one was chosen by similarity to neighbouring days and the two were near-equal, so a few presence flags that day are uncertain.",
+    "The re-entry forecast is experimental/descriptive and should not be read as a dependable prediction."
+  ],
+  "reentry_forecast_model_EXPERIMENTAL": {
+    "horizon_days": 30,
+    "n_samples": 17616,
+    "supported": true,
+    "reliable": false,
+    "reason": "Discriminates well (AUC 0.903) but does not improve on a trivial recency-only baseline (AUC 0.904); the signal is almost entirely 'recently exited songs return sooner'. Treat as a descriptive risk ranking, not a validated forecast.",
+    "split_date": "2025-03-31 00:00:00",
+    "test_start": "2025-04-30 00:00:00",
+    "n_train": 6468,
+    "n_test": 9675,
+    "pos_train": 286,
+    "pos_test": 178,
+    "prevalence_test": 0.01839793281653747,
+    "baseline_auc": 0.9041548306798244,
+    "best_model": "Logistic regression",
+    "beats_baseline": false,
+    "metrics": [
+      {
+        "model": "Logistic regression",
+        "roc_auc": 0.9032,
+        "auc_ci_low": 0.863,
+        "auc_ci_high": 0.9413,
+        "pr_auc": 0.2201,
+        "brier": 0.1024,
+        "precision_top10pct": 0.1231,
+        "lift_top10pct": 6.6889
+      },
+      {
+        "model": "Baseline: recency only",
+        "roc_auc": 0.9042,
+        "auc_ci_low": 0.8659,
+        "auc_ci_high": 0.9384,
+        "pr_auc": 0.1848,
+        "brier": NaN,
+        "precision_top10pct": 0.1241,
+        "lift_top10pct": 6.7451
+      }
+    ]
+  }
+}

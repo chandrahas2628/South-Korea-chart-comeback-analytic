@@ -1,0 +1,2 @@
+date,rows_before,n_blocks,chosen_block,distances,rows_discarded,method
+2025-03-01,100,2,0,"jaccard=0.852/rankdist=3.31, jaccard=0.802/rankdist=3.29",50,highest song-set overlap with neighbouring complete snapshots (rank distance as tie-break)
